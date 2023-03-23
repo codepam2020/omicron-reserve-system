@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from "react-router-dom";
 import Appbar from "./components/appbar";
+import { addFreeReserve } from "../data/firebase";
 
 export default function FreeReservePage () {
   const navigate = useNavigate();
@@ -46,6 +47,8 @@ export default function FreeReservePage () {
 
     else {
       setErrMessage('');
+      addFreeReserve({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: Date.now().toString() }, week, time, court);
+      console.log("hi");
     }
   }
 
@@ -80,9 +83,9 @@ export default function FreeReservePage () {
             label="요일"
             onChange={(e: SelectChangeEvent) => { setWeek(e.target.value); }}
           >
-            <MenuItem value="화요일">화요일</MenuItem>
-            <MenuItem value="수요일">수요일</MenuItem>
-            <MenuItem value="목요일">목요일</MenuItem>
+            <MenuItem value="tue">화요일</MenuItem>
+            <MenuItem value="wed">수요일</MenuItem>
+            <MenuItem value="thu">목요일</MenuItem>
           </Select>
         </FormControl>
 
@@ -91,7 +94,7 @@ export default function FreeReservePage () {
         <FormControl size="small" sx={{ width: 190 }}>
           <InputLabel id="demo-simple-select-label">시간</InputLabel>
 
-          {week === "수요일" ?
+          {week === "wed" ?
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -99,9 +102,10 @@ export default function FreeReservePage () {
               label="시간"
               onChange={(e: SelectChangeEvent) => { setTime(e.target.value); }}
             >
-              <MenuItem value="17:30 ~ 18:15">17:30 ~ 18:15</MenuItem>
-              <MenuItem value="19:00 ~ 19:45">19:00 ~ 19:45</MenuItem>
-              <MenuItem value="19:45 ~ 20:30">19:45 ~ 20:30</MenuItem>
+              <MenuItem value="time1">17:30 ~ 18:15</MenuItem>
+              <MenuItem value="time2">18:15 ~ 19:00</MenuItem>
+              <MenuItem value="time3">19:00 ~ 19:45</MenuItem>
+              <MenuItem value="time4">19:45 ~ 20:30</MenuItem>
 
             </Select>
             :
@@ -112,7 +116,7 @@ export default function FreeReservePage () {
               label="시간"
               onChange={(e: SelectChangeEvent) => { setTime(e.target.value); }}
             >
-              <MenuItem value="19:30 ~ 20:30">19:30 ~ 20:30</MenuItem>
+              <MenuItem value="time1">19:30 ~ 20:30</MenuItem>
             </Select>
           }
 
@@ -142,7 +146,7 @@ export default function FreeReservePage () {
           label="비밀번호"
           variant="outlined"
           size="small"
-          type="number"
+          type="password"
           sx={{ width: 190 }}
           onChange={(e) => setPw(e.target.value)}
           value={pw}
@@ -157,7 +161,7 @@ export default function FreeReservePage () {
           label="비밀번호 확인"
           variant="outlined"
           size="small"
-          type={'number'}
+          type='password'
           sx={{ width: 190 }}
           onChange={(e) => setRePw(e.target.value)}
           value={rePw}
@@ -168,16 +172,22 @@ export default function FreeReservePage () {
 
       <div className="text-basic">비밀번호는 본인 확인 및 예약 취소시 사용됩니다.</div>
 
-      <div className="h-16" />
+      <div className="h-10" />
+
+
+      <div className="text-red-500">{errMessage}</div>
+
+      <div className="h-6" />
 
       <a
+        href="#"
         className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl"
         onClick={clickReserveButton}
       >
+
         <div>예약하기</div>
       </a>
       <div className="h-6" />
-      <div className="text-red-500">{errMessage}</div>
 
 
     </div>

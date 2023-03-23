@@ -78,7 +78,7 @@ export default function FreeTrainingState () {
 
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-3">
               {wedData.time1.A.names.map((data) =>
                 <a href="#" className="text-name">{data.name}</a>
               )}
@@ -87,7 +87,7 @@ export default function FreeTrainingState () {
 
           <div className="flex flex-col items-center">
             <div className="text-center">코트 B</div>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-3">
               {wedData.time1.B.names.map((data) =>
                 <a href="#" className="text-name">{data.name}</a>
               )}
@@ -102,7 +102,7 @@ export default function FreeTrainingState () {
 
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-3">
               {wedData.time2.A.names.map((data) =>
                 <a href="#" className="text-name">{data.name}</a>
               )}
@@ -110,8 +110,8 @@ export default function FreeTrainingState () {
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="text-center">코트 A</div>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="text-center">코트 B</div>
+            <div className="grid grid-cols-2 gap-3">
               {wedData.time2.B.names.map((data) =>
                 <a href="#" className="text-name">{data.name}</a>
               )}
@@ -180,7 +180,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
-              {wedData.time4.A.names.map((data) =>
+              {thuData.time1.A.names.map((data) =>
                 <a href="#" className="text-name">{data.name}</a>
               )}
             </div>
@@ -189,7 +189,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
-              {wedData.time4.B.names.map((data) =>
+              {thuData.time1.B.names.map((data) =>
                 <a href="#" className="text-name">{data.name}</a>
               )}
             </div>

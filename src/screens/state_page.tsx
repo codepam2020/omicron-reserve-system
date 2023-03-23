@@ -12,10 +12,14 @@ export default function StatePage () {
 
 
 
-
   return (
     <div className="flex flex-col items-center justify-start w-screen min-h-screen p-2">
       <Appbar title="예약현황" />
+
+      <div className="h-8" />
+
+
+
       <div className="h-8" />
 
       <FormControl size="small" sx={{ width: 190 }}>

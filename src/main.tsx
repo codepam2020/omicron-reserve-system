@@ -4,6 +4,7 @@ import HomePage from "./screens/home_page";
 import FreeReservePage from "./screens/free_reserve_page";
 import StatePage from "./screens/state_page";
 import RegularReservePage from "./screens/regular_reserve_page";
+import RemoveRegularReservePage from "./screens/remove_regular_reserve_page";
 
 const router = createBrowserRouter([
   {
@@ -11,16 +12,20 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "free-reserve",
+    path: "/free-reserve",
     element: <FreeReservePage />
   },
   {
-    path: "state",
+    path: "/state",
     element: <StatePage />
   },
   {
-    path: 'regular-reserve',
+    path: '/regular-reserve',
     element: <RegularReservePage />
+  },
+  {
+    path: '/remove-reg-reserve',
+    element: <RemoveRegularReservePage />
   }
 ]);
 

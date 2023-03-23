@@ -6,7 +6,7 @@ module.exports = {
       colors: {
         basic: "#000000",
         button: "#d4db18",
-        name: "#748B9B",
+        name: "#919191",
       },
       fontSize: {
         title: 24,

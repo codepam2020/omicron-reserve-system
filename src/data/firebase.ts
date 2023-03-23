@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
-  collection,
-  getDocs,
   doc,
   getDoc,
+  setDoc,
+  arrayUnion,
 } from "firebase/firestore/lite";
 
 const firebaseConfig = {
@@ -37,4 +37,35 @@ async function getThuData() {
   return docSnap.data() as object;
 }
 
-export { getTueData, getWedData, getThuData };
+async function addRegularReserve(names: any, week: string, time: string) {
+  var data: any = {};
+  data[time] = { names: arrayUnion(names) };
+
+  await setDoc(doc(db, "recent-reserve", week), data, { merge: true });
+}
+
+async function addFreeReserve(
+  names: any,
+  week: string,
+  time: string,
+  court: string
+) {
+  var data: any = {};
+  if (court == "A") {
+    data[time] = { A: { names: arrayUnion(names) } };
+  } else {
+    data[time] = { B: { names: arrayUnion(names) } };
+  }
+
+  await setDoc(doc(db, "recent-reserve", week), data, { merge: true });
+}
+
+async function removeReserve() {}
+
+export {
+  getTueData,
+  getWedData,
+  getThuData,
+  addRegularReserve,
+  addFreeReserve,
+};

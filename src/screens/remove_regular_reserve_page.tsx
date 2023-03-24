@@ -11,12 +11,11 @@ export default function RemoveRegularReservePage () {
   const [pw, setPw] = useState('');
 
   const [week, setWeek] = useState('');
-  const [time, setTime] = useState('');
 
   useEffect(() => {
-    if (data.week == 'tue') {
+    if (data.week === 'tue') {
       setWeek('화요일');
-    } else if (data.week == 'wed') {
+    } else if (data.week === 'wed') {
       setWeek('수요일');
     } else {
       setWeek('목요일');
@@ -24,9 +23,9 @@ export default function RemoveRegularReservePage () {
   }, [data]);
 
   function clickCancelButton () {
-    if (pw == data.pw) {
+    if (pw === data.pw) {
       alert('pass');
-    } else if (pw == '960221') {
+    } else if (pw === '960221') {
       alert('pass');
     } else {
       alert('비밀번호 오류');

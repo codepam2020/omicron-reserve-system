@@ -4,32 +4,32 @@ import { getThuData, getTueData, getWedData } from "../../data/firebase";
 export default function FreeTrainingState () {
   const [tueData, setTueData] = useState({
     time1: {
-      A: { names: [{ name: '', time: '', pw: '' }] },
-      B: { names: [{ name: '', time: '', pw: '' }] }
+      A: { names: [{ name: '', timeStamp: '' }] },
+      B: { names: [{ name: '', timeStamp: '' }] }
     }
   });
   const [thuData, setThuData] = useState({
     time1: {
-      A: { names: [{ name: '', time: '', pw: '' }] },
-      B: { names: [{ name: '', time: '', pw: '' }] }
+      A: { names: [{ name: '', timeStamp: '' }] },
+      B: { names: [{ name: '', timeStamp: '' }] }
     }
   });
   const [wedData, setWedData] = useState({
     time1: {
-      A: { names: [{ name: '', time: '', pw: '' }] },
-      B: { names: [{ name: '', time: '', pw: '' }] }
+      A: { names: [{ name: '', timeStamp: '' }] },
+      B: { names: [{ name: '', timeStamp: '' }] }
     },
     time2: {
-      A: { names: [{ name: '', time: '', pw: '' }] },
-      B: { names: [{ name: '', time: '', pw: '' }] }
+      A: { names: [{ name: '', timeStamp: '' }] },
+      B: { names: [{ name: '', timeStamp: '' }] }
     },
     time3: {
-      A: { names: [{ name: '', time: '', pw: '' }] },
-      B: { names: [{ name: '', time: '', pw: '' }] }
+      A: { names: [{ name: '', timeStamp: '' }] },
+      B: { names: [{ name: '', timeStamp: '' }] }
     },
     time4: {
-      A: { names: [{ name: '', time: '', pw: '' }] },
-      B: { names: [{ name: '', time: '', pw: '' }] }
+      A: { names: [{ name: '', timeStamp: '' }] },
+      B: { names: [{ name: '', timeStamp: '' }] }
     }
   });
 

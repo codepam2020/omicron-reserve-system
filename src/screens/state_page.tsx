@@ -10,8 +10,6 @@ export default function StatePage () {
 
   const [trainingType, setTrainingType] = useState('정규훈련');
 
-
-
   return (
     <div className="flex flex-col items-center justify-start w-screen min-h-screen p-2">
       <Appbar title="예약현황" />
@@ -20,7 +18,6 @@ export default function StatePage () {
 
 
 
-      <div className="h-8" />
 
       <FormControl size="small" sx={{ width: 190 }}>
         <InputLabel id="demo-simple-select-label">훈련 종류</InputLabel>

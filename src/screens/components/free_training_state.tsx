@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getThuData, getTueData, getWedData } from "../../data/firebase";
+import { Link } from "react-router-dom";
 
 export default function FreeTrainingState () {
   const [tueData, setTueData] = useState({
@@ -47,12 +48,13 @@ export default function FreeTrainingState () {
         <div className="mb-2" >19:30 ~ 20:30</div>
 
         <div className="grid grid-cols-2 w-full mb-2">
-
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
               {tueData.time1.A.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
 
@@ -61,7 +63,9 @@ export default function FreeTrainingState () {
             <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-5">
               {tueData.time1.B.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>
@@ -78,18 +82,22 @@ export default function FreeTrainingState () {
 
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-5">
               {wedData.time1.A.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>
 
           <div className="flex flex-col items-center">
             <div className="text-center">코트 B</div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-5">
               {wedData.time1.B.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
 
@@ -102,9 +110,11 @@ export default function FreeTrainingState () {
 
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-5">
               {wedData.time2.A.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>
@@ -113,7 +123,9 @@ export default function FreeTrainingState () {
             <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-3">
               {wedData.time2.B.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>
@@ -128,16 +140,20 @@ export default function FreeTrainingState () {
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
               {wedData.time3.A.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="text-center">코트 A</div>
+            <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-5">
               {wedData.time3.B.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>
@@ -152,16 +168,20 @@ export default function FreeTrainingState () {
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
               {wedData.time4.A.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="text-center">코트 A</div>
+            <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-5">
               {wedData.time4.B.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>
@@ -181,16 +201,20 @@ export default function FreeTrainingState () {
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
               {thuData.time1.A.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="text-center">코트 A</div>
+            <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-5">
               {thuData.time1.B.names.map((data) =>
-                <a href="#" className="text-name">{data.name}</a>
+                <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
+                  <div>{data.name}</div>
+                </Link>
               )}
             </div>
           </div>

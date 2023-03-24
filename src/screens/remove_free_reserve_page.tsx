@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Appbar } from "./components";
 import TextField from '@mui/material/TextField';
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { removeRegularReserve } from "../data/firebase";
+import { removeFreeReserve } from "../data/firebase";
 
 
-export default function RemoveRegularReservePage () {
+export default function RemoveFreeReserve () {
   const navigate = useNavigate();
 
   const { state } = useLocation();
@@ -15,6 +15,7 @@ export default function RemoveRegularReservePage () {
 
   const [week, setWeek] = useState('');
   const [time, setTime] = useState('');
+  const [court, setCourt] = useState('');
 
   useEffect(() => {
     if (data.week === 'tue') {
@@ -25,19 +26,32 @@ export default function RemoveRegularReservePage () {
       setWeek('목요일');
     }
 
-    if (data.time === 'reg_time1') {
-      setTime('17:30 ~ 20:30');
-    } else if (data.time === 'reg_time2') {
-      setTime('18:00 ~ 19:00');
+    if (data.time === 'time1') {
+      if (data.week === 'wed') {
+        setTime('17:30 ~ 18:15');
+      } else {
+        setTime('19:30 ~ 20:30');
+      }
+    } else if (data.time === 'time2') {
+      setTime('18:15 ~ 19:00');
+    } else if (data.time === 'time3') {
+      setTime('19:00 ~ 19:45');
     } else {
-      setTime('18:30 ~ 19:30');
+      setTime('19:45 ~ 20:30');
+    }
+
+
+    if (data.court === 'A') {
+      setCourt('코트 A');
+    } else {
+      setCourt('코트 B');
     }
   }, [data]);
 
   function clickCancelButton () {
     if (pw === data.pw) {
       try {
-        removeRegularReserve(data);
+        removeFreeReserve(data);
         alert('취소되었습니다');
         navigate(-1);
       } catch (e) {
@@ -46,13 +60,12 @@ export default function RemoveRegularReservePage () {
 
     } else if (pw === '960221') {
       try {
-        removeRegularReserve(data);
+        removeFreeReserve(data);
         alert('취소되었습니다');
         navigate(-1);
       } catch (e) {
         alert('ERROR');
       }
-
     } else {
       alert('비밀번호 오류');
     }
@@ -66,8 +79,6 @@ export default function RemoveRegularReservePage () {
 
       <div className="h-8" />
 
-
-
       <div className="grid grid-cols-2 gap-8">
         <div>예약자 : </div>
         <div>{data.name}</div>
@@ -75,7 +86,8 @@ export default function RemoveRegularReservePage () {
         <div>{week}</div>
         <div>훈련시간 : </div>
         <div>{time}</div>
-
+        <div>테니스 코트</div>
+        <div>{court}</div>
       </div>
 
       <div className="h-12" />
@@ -104,6 +116,7 @@ export default function RemoveRegularReservePage () {
       </Link>
 
       <div className="h-6" />
+
 
     </div>
   );

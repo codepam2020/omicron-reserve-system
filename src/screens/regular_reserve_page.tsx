@@ -43,6 +43,8 @@ export default function RegularReservePage () {
     else {
       setErrMessage('');
       addRegularReserve({ name: name, week: week, time: time, pw: pw, timeStamp: Date.now().toString() }, week, time);
+      alert('예약되었습니다');
+      navigate('/');
     }
   }
 

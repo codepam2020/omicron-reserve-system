@@ -5,6 +5,7 @@ import {
   getDoc,
   setDoc,
   arrayUnion,
+  arrayRemove,
 } from "firebase/firestore/lite";
 
 const firebaseConfig = {
@@ -44,14 +45,9 @@ async function addRegularReserve(names: any, week: string, time: string) {
   await setDoc(doc(db, "recent-reserve", week), data, { merge: true });
 }
 
-async function addFreeReserve(
-  names: any,
-  week: string,
-  time: string,
-  court: string
-) {
+async function addFreeReserve(names: any, week: string, time: string) {
   var data: any = {};
-  if (court == "A") {
+  if (names.court === "A") {
     data[time] = { A: { names: arrayUnion(names) } };
   } else {
     data[time] = { B: { names: arrayUnion(names) } };
@@ -60,7 +56,23 @@ async function addFreeReserve(
   await setDoc(doc(db, "recent-reserve", week), data, { merge: true });
 }
 
-async function removeReserve() {}
+async function removeRegularReserve(names: any) {
+  var data: any = {};
+  data[names.time] = { names: arrayRemove(names) };
+
+  await setDoc(doc(db, "recent-reserve", names.week), data, { merge: true });
+}
+
+async function removeFreeReserve(names: any) {
+  var data: any = {};
+  if (names.court === "A") {
+    data[names.time] = { A: { names: arrayRemove(names) } };
+  } else {
+    data[names.time] = { B: { names: arrayRemove(names) } };
+  }
+
+  await setDoc(doc(db, "recent-reserve", names.week), data, { merge: true });
+}
 
 export {
   getTueData,
@@ -68,4 +80,6 @@ export {
   getThuData,
   addRegularReserve,
   addFreeReserve,
+  removeRegularReserve,
+  removeFreeReserve,
 };

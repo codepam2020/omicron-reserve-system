@@ -47,8 +47,9 @@ export default function FreeReservePage () {
 
     else {
       setErrMessage('');
-      addFreeReserve({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: Date.now().toString() }, week, time, court);
-      console.log("hi");
+      addFreeReserve({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: Date.now().toString() }, week, time);
+      alert('예약되었습니다');
+      navigate('/');
     }
   }
 

@@ -27,8 +27,8 @@ export default function ManagaPage () {
       {visible ?
         <ManageContent />
         :
-        <div className="flex flex-col items-center justify-center w-full">
-          <div>
+        <div className="flex flex-col items-center w-full">
+          <div className="mt-10">
             <TextField
               id="outlined-basic"
               label="비밀번호"

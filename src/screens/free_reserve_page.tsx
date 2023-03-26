@@ -137,7 +137,7 @@ export default function FreeReservePage () {
               onChange={(e: SelectChangeEvent) => { setTime(e.target.value); }}
             >
               <MenuItem value="time1">17:30 ~ 18:15</MenuItem>
-              {/* <MenuItem value="time2">18:15 ~ 19:00</MenuItem> */}
+              <MenuItem value="time2">18:15 ~ 19:00</MenuItem>
               <MenuItem value="time3">19:00 ~ 19:45</MenuItem>
               <MenuItem value="time4">19:45 ~ 20:30</MenuItem>
 

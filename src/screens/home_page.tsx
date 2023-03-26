@@ -16,7 +16,8 @@ export default function HomePage () {
       <div className="h-20" />
 
 
-      <div className="flex flex-col items-end w-full absolute bottom-2 right-4">
+      <div className="flex flex-row items-center justify-between w-full absolute bottom-3 px-3">
+        <div className="text-gray-200">made by Yook</div>
         <Link to="/manage">
           <div className="text-gray-100">관리자 페이지</div>
         </Link>

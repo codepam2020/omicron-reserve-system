@@ -32,7 +32,10 @@ export default function StatePage () {
           <MenuItem value="자율훈련">자율훈련</MenuItem>
         </Select>
       </FormControl>
+      <div className="h-3" />
+      <div>본인 이름을 누른 뒤 비밀번호를 입력하면 예약취소됩니다</div>
       <div className="h-5" />
+
       {trainingType === '정규훈련' ?
         <RegularTrainingState /> :
         <FreeTrainingState />

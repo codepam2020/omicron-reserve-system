@@ -5,32 +5,32 @@ import { Link } from "react-router-dom";
 export default function FreeTrainingState () {
   const [tueData, setTueData] = useState({
     time1: {
-      A: { names: [{ name: '', timeStamp: '' }] },
-      B: { names: [{ name: '', timeStamp: '' }] }
+      A: { names: [{ name: '', timeStamp: 1 }] },
+      B: { names: [{ name: '', timeStamp: 1 }] }
     }
   });
   const [thuData, setThuData] = useState({
     time1: {
-      A: { names: [{ name: '', timeStamp: '' }] },
-      B: { names: [{ name: '', timeStamp: '' }] }
+      A: { names: [{ name: '', timeStamp: 1 }] },
+      B: { names: [{ name: '', timeStamp: 1 }] }
     }
   });
   const [wedData, setWedData] = useState({
     time1: {
-      A: { names: [{ name: '', timeStamp: '' }] },
-      B: { names: [{ name: '', timeStamp: '' }] }
+      A: { names: [{ name: '', timeStamp: 1 }] },
+      B: { names: [{ name: '', timeStamp: 1 }] }
     },
     time2: {
-      A: { names: [{ name: '', timeStamp: '' }] },
-      B: { names: [{ name: '', timeStamp: '' }] }
+      A: { names: [{ name: '', timeStamp: 1 }] },
+      B: { names: [{ name: '', timeStamp: 1 }] }
     },
     time3: {
-      A: { names: [{ name: '', timeStamp: '' }] },
-      B: { names: [{ name: '', timeStamp: '' }] }
+      A: { names: [{ name: '', timeStamp: 1 }] },
+      B: { names: [{ name: '', timeStamp: 1 }] }
     },
     time4: {
-      A: { names: [{ name: '', timeStamp: '' }] },
-      B: { names: [{ name: '', timeStamp: '' }] }
+      A: { names: [{ name: '', timeStamp: 1 }] },
+      B: { names: [{ name: '', timeStamp: 1 }] }
     }
   });
 
@@ -51,7 +51,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
-              {tueData.time1.A.names.map((data) =>
+              {tueData.time1.A.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -62,7 +62,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-5">
-              {tueData.time1.B.names.map((data) =>
+              {tueData.time1.B.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -83,7 +83,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
-              {wedData.time1.A.names.map((data) =>
+              {wedData.time1.A.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -94,7 +94,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-5">
-              {wedData.time1.B.names.map((data) =>
+              {wedData.time1.B.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -111,7 +111,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
-              {wedData.time2.A.names.map((data) =>
+              {wedData.time2.A.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -122,7 +122,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-3">
-              {wedData.time2.B.names.map((data) =>
+              {wedData.time2.B.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -139,7 +139,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
-              {wedData.time3.A.names.map((data) =>
+              {wedData.time3.A.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -150,7 +150,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-5">
-              {wedData.time3.B.names.map((data) =>
+              {wedData.time3.B.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -167,7 +167,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
-              {wedData.time4.A.names.map((data) =>
+              {wedData.time4.A.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -178,7 +178,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-5">
-              {wedData.time4.B.names.map((data) =>
+              {wedData.time4.B.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -200,7 +200,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 A</div>
             <div className="grid grid-cols-2 gap-5">
-              {thuData.time1.A.names.map((data) =>
+              {thuData.time1.A.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>
@@ -211,7 +211,7 @@ export default function FreeTrainingState () {
           <div className="flex flex-col items-center">
             <div className="text-center">코트 B</div>
             <div className="grid grid-cols-2 gap-5">
-              {thuData.time1.B.names.map((data) =>
+              {thuData.time1.B.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
                 <Link to='/remove-free-reserve' state={data} className="text-name" key={data.timeStamp} >
                   <div>{data.name}</div>
                 </Link>

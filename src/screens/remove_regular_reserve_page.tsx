@@ -26,7 +26,7 @@ export default function RemoveRegularReservePage () {
     }
 
     if (data.time === 'reg_time1') {
-      setTime('17:30 ~ 20:30');
+      setTime('17:30 ~ 18:30');
     } else if (data.time === 'reg_time2') {
       setTime('18:00 ~ 19:00');
     } else {

@@ -19,6 +19,32 @@ export default function FreeReservePage () {
   const [rePw, setRePw] = useState('');
   const [errMessage, setErrMessage] = useState('');
 
+  function getCurrentDate () {
+    var date: any = new Date();
+    var year = date.getFullYear().toString();
+
+    var month = date.getMonth() + 1;
+    month = month < 10 ? '0' + month.toString() : month.toString();
+
+    var day = date.getDate();
+    day = day < 10 ? '0' + day.toString() : day.toString();
+
+    var hour = date.getHours();
+    hour = hour < 10 ? '0' + hour.toString() : hour.toString();
+
+    var minites = date.getMinutes();
+    minites = minites < 10 ? '0' + minites.toString() : minites.toString();
+
+    var seconds = date.getSeconds();
+    seconds = seconds < 10 ? '0' + seconds.toString() : seconds.toString();
+
+    var milliseconds = date.getMilliseconds();
+    milliseconds = milliseconds < 10 ? '00' + milliseconds.toString() : milliseconds < 100 ? '0' + milliseconds.toString() : milliseconds.toString();
+
+
+    return Number(year + month + day + hour + minites + seconds + milliseconds);
+  }
+
 
   function clickReserveButton () {
     if (name.trim() === '') {
@@ -47,8 +73,8 @@ export default function FreeReservePage () {
 
     else {
       setErrMessage('');
-      addFreeReserve({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: Date.now().toString() });
-      logDataFree({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: Date.now().toString() });
+      addFreeReserve({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: getCurrentDate() });
+      logDataFree({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: getCurrentDate() });
       alert('예약되었습니다');
       navigate('/');
     }
@@ -105,7 +131,7 @@ export default function FreeReservePage () {
               onChange={(e: SelectChangeEvent) => { setTime(e.target.value); }}
             >
               <MenuItem value="time1">17:30 ~ 18:15</MenuItem>
-              <MenuItem value="time2">18:15 ~ 19:00</MenuItem>
+              {/* <MenuItem value="time2">18:15 ~ 19:00</MenuItem> */}
               <MenuItem value="time3">19:00 ~ 19:45</MenuItem>
               <MenuItem value="time4">19:45 ~ 20:30</MenuItem>
 

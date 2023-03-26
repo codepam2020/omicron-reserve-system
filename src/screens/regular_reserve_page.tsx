@@ -9,6 +9,35 @@ import Appbar from "./components/appbar";
 import { addRegularReserve, logDataRegular } from "../data/firebase";
 
 export default function RegularReservePage () {
+
+  function getCurrentDate () {
+    var date: any = new Date();
+    var year = date.getFullYear().toString();
+
+    var month = date.getMonth() + 1;
+    month = month < 10 ? '0' + month.toString() : month.toString();
+
+    var day = date.getDate();
+    day = day < 10 ? '0' + day.toString() : day.toString();
+
+    var hour = date.getHours();
+    hour = hour < 10 ? '0' + hour.toString() : hour.toString();
+
+    var minites = date.getMinutes();
+    minites = minites < 10 ? '0' + minites.toString() : minites.toString();
+
+    var seconds = date.getSeconds();
+    seconds = seconds < 10 ? '0' + seconds.toString() : seconds.toString();
+
+    var milliseconds = date.getMilliseconds();
+    milliseconds = milliseconds < 10 ? '00' + milliseconds.toString() : milliseconds < 100 ? '0' + milliseconds.toString() : milliseconds.toString();
+
+
+    return Number(year + month + day + hour + minites + seconds + milliseconds);
+  }
+
+
+
   var navigate = useNavigate();
 
   var [name, setName] = useState('');
@@ -42,8 +71,8 @@ export default function RegularReservePage () {
 
     else {
       setErrMessage('');
-      addRegularReserve({ name: name, week: week, time: time, pw: pw, timeStamp: Date.now().toString() });
-      logDataRegular({ name: name, week: week, time: time, pw: pw, timeStamp: Date.now().toString() });
+      addRegularReserve({ name: name, week: week, time: time, pw: pw, timeStamp: getCurrentDate() });
+      logDataRegular({ name: name, week: week, time: time, pw: pw, timeStamp: getCurrentDate() });
       alert('예약되었습니다');
       navigate('/');
     }

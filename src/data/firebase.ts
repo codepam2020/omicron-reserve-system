@@ -38,22 +38,38 @@ async function getThuData() {
   return docSnap.data() as object;
 }
 
-async function addRegularReserve(names: any, week: string, time: string) {
+async function addRegularReserve(names: any) {
   var data: any = {};
-  data[time] = { names: arrayUnion(names) };
+  data[names.time] = { names: arrayUnion(names) };
 
-  await setDoc(doc(db, "recent-reserve", week), data, { merge: true });
+  await setDoc(doc(db, "recent-reserve", names.week), data, { merge: true });
 }
 
-async function addFreeReserve(names: any, week: string, time: string) {
+async function addFreeReserve(names: any) {
   var data: any = {};
   if (names.court === "A") {
-    data[time] = { A: { names: arrayUnion(names) } };
+    data[names.time] = { A: { names: arrayUnion(names) } };
   } else {
-    data[time] = { B: { names: arrayUnion(names) } };
+    data[names.time] = { B: { names: arrayUnion(names) } };
   }
 
-  await setDoc(doc(db, "recent-reserve", week), data, { merge: true });
+  await setDoc(doc(db, "recent-reserve", names.week), data, { merge: true });
+}
+
+async function logDataFree(names: any) {
+  await setDoc(
+    doc(db, "log_data", "free_log_data"),
+    { data: arrayUnion(names) },
+    { merge: true }
+  );
+}
+
+async function logDataRegular(names: any) {
+  await setDoc(
+    doc(db, "log_data", "regular_log_data"),
+    { data: arrayUnion(names) },
+    { merge: true }
+  );
 }
 
 async function removeRegularReserve(names: any) {
@@ -74,6 +90,79 @@ async function removeFreeReserve(names: any) {
   await setDoc(doc(db, "recent-reserve", names.week), data, { merge: true });
 }
 
+async function resetRegularReserve() {
+  await setDoc(
+    doc(db, "recent-reserve", "tue"),
+    {
+      reg_time1: { names: [] },
+      reg_time2: { names: [] },
+      reg_time3: { names: [] },
+    },
+    { merge: true }
+  );
+  await setDoc(
+    doc(db, "recent-reserve", "thu"),
+    {
+      reg_time1: { names: [] },
+      reg_time2: { names: [] },
+      reg_time3: { names: [] },
+    },
+    { merge: true }
+  );
+}
+
+async function resetFreeReserve() {
+  await setDoc(
+    doc(db, "recent-reserve", "tue"),
+    {
+      time1: { A: { names: [] }, B: { names: [] } },
+    },
+    { merge: true }
+  );
+  await setDoc(
+    doc(db, "recent-reserve", "thu"),
+    {
+      time1: { A: { names: [] }, B: { names: [] } },
+    },
+    { merge: true }
+  );
+  await setDoc(
+    doc(db, "recent-reserve", "wed"),
+    {
+      time1: { A: { names: [] }, B: { names: [] } },
+      time2: {
+        A: {
+          names: [
+            {
+              name: "임원진",
+              week: "wed",
+              time: "time2",
+              court: "A",
+              pw: "960221",
+              timeStamp: "960221",
+            },
+          ],
+        },
+        B: {
+          names: [
+            {
+              name: "임원진",
+              week: "wed",
+              time: "time2",
+              court: "B",
+              pw: "960221",
+              timeStamp: "960221",
+            },
+          ],
+        },
+      },
+      time3: { A: { names: [] }, B: { names: [] } },
+      time4: { A: { names: [] }, B: { names: [] } },
+    },
+    { merge: true }
+  );
+}
+
 export {
   getTueData,
   getWedData,
@@ -82,4 +171,8 @@ export {
   addFreeReserve,
   removeRegularReserve,
   removeFreeReserve,
+  resetRegularReserve,
+  resetFreeReserve,
+  logDataFree,
+  logDataRegular,
 };

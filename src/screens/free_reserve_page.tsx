@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from "react-router-dom";
 import Appbar from "./components/appbar";
-import { addFreeReserve } from "../data/firebase";
+import { addFreeReserve, logDataFree } from "../data/firebase";
 
 export default function FreeReservePage () {
   const navigate = useNavigate();
@@ -47,7 +47,8 @@ export default function FreeReservePage () {
 
     else {
       setErrMessage('');
-      addFreeReserve({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: Date.now().toString() }, week, time);
+      addFreeReserve({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: Date.now().toString() });
+      logDataFree({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: Date.now().toString() });
       alert('예약되었습니다');
       navigate('/');
     }

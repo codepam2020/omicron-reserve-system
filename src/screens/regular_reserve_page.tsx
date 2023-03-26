@@ -4,9 +4,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Appbar from "./components/appbar";
-import { addRegularReserve } from "../data/firebase";
+import { addRegularReserve, logDataRegular } from "../data/firebase";
 
 export default function RegularReservePage () {
   var navigate = useNavigate();
@@ -42,7 +42,8 @@ export default function RegularReservePage () {
 
     else {
       setErrMessage('');
-      addRegularReserve({ name: name, week: week, time: time, pw: pw, timeStamp: Date.now().toString() }, week, time);
+      addRegularReserve({ name: name, week: week, time: time, pw: pw, timeStamp: Date.now().toString() });
+      logDataRegular({ name: name, week: week, time: time, pw: pw, timeStamp: Date.now().toString() });
       alert('예약되었습니다');
       navigate('/');
     }
@@ -144,6 +145,7 @@ export default function RegularReservePage () {
       <div className="h-6" />
 
       <a
+        href="#"
         className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl"
         onClick={clickReserveButton}
       >

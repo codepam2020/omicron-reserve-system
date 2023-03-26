@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from "react-router-dom";
 import Appbar from "./components/appbar";
-import { addFreeReserve, logDataFree } from "../data/firebase";
+import { addFreeReserve, logDataFree, getTrainingReserveButtonVisible } from "../data/firebase";
 
 export default function FreeReservePage () {
   const navigate = useNavigate();
@@ -18,6 +18,12 @@ export default function FreeReservePage () {
   const [pw, setPw] = useState('');
   const [rePw, setRePw] = useState('');
   const [errMessage, setErrMessage] = useState('');
+  const [reserveButtonVisible, setReserveButtonVisible] = useState(false);
+
+
+  useEffect(() => {
+    getTrainingReserveButtonVisible().then((re: any) => setReserveButtonVisible(re.reserve_button_visible));
+  }, []);
 
   function getCurrentDate () {
     var date: any = new Date();
@@ -207,14 +213,23 @@ export default function FreeReservePage () {
 
       <div className="h-6" />
 
-      <a
-        href="#!"
-        className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl"
-        onClick={clickReserveButton}
-      >
-
-        <div>예약하기</div>
-      </a>
+      {reserveButtonVisible ?
+        <a
+          href="#!"
+          className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl"
+          onClick={clickReserveButton}
+        >
+          <div>예약하기</div>
+        </a>
+        :
+        <a
+          href="#!"
+          className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl"
+          onClick={() => { alert('훈련 예약 기간이 아닙니다'); }}
+        >
+          <div>예약하기</div>
+        </a>
+      }
       <div className="h-6" />
 
 

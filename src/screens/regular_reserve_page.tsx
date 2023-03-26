@@ -9,6 +9,13 @@ import Appbar from "./components/appbar";
 import { addRegularReserve, logDataRegular, getTrainingReserveButtonVisible } from "../data/firebase";
 
 export default function RegularReservePage () {
+  const [name, setName] = useState('');
+  const [week, setWeek] = useState('');
+  const [time, setTime] = useState('');
+  const [pw, setPw] = useState('');
+  const [rePw, setRePw] = useState('');
+  const [errMessage, setErrMessage] = useState('');
+  const [reserveButtonVisible, setReserveButtonVisible] = useState(false);
 
 
   useEffect(() => {
@@ -44,13 +51,7 @@ export default function RegularReservePage () {
 
   var navigate = useNavigate();
 
-  const [name, setName] = useState('');
-  const [week, setWeek] = useState('');
-  const [time, setTime] = useState('');
-  const [pw, setPw] = useState('');
-  const [rePw, setRePw] = useState('');
-  const [errMessage, setErrMessage] = useState('');
-  const [reserveButtonVisible, setReserveButtonVisible] = useState(false);
+
 
   async function clickReserveButton () {
     if (name.trim() === '') {
@@ -177,13 +178,6 @@ export default function RegularReservePage () {
 
       <div className="h-6" />
 
-      <a
-        href="#!"
-        className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl"
-        onClick={clickReserveButton}
-      >
-        <div>예약하기</div>
-      </a>
       {reserveButtonVisible ?
         <a
           href="#!"

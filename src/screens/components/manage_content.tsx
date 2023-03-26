@@ -19,10 +19,12 @@ export default function ManageContent () {
 
   function clickTrainingButtonShow () {
     setTrainigReserveButtonVisible(true);
+    alert('예약 버튼 보이기 완료');
   }
 
   function clickTrainingButtonHidden () {
     setTrainigReserveButtonVisible(false);
+    alert('예약 버튼 숨기기 완료');
   }
 
 

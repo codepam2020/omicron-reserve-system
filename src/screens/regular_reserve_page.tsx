@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,9 +6,14 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from "react-router-dom";
 import Appbar from "./components/appbar";
-import { addRegularReserve, logDataRegular } from "../data/firebase";
+import { addRegularReserve, logDataRegular, getTrainingReserveButtonVisible } from "../data/firebase";
 
 export default function RegularReservePage () {
+
+
+  useEffect(() => {
+    getTrainingReserveButtonVisible().then((re: any) => setReserveButtonVisible(re.reserve_button_visible));
+  }, []);
 
   function getCurrentDate () {
     var date: any = new Date();
@@ -37,18 +42,17 @@ export default function RegularReservePage () {
   }
 
 
-
   var navigate = useNavigate();
 
-  var [name, setName] = useState('');
-  var [week, setWeek] = useState('');
-  var [time, setTime] = useState('');
-  var [pw, setPw] = useState('');
-  var [rePw, setRePw] = useState('');
-  var [errMessage, setErrMessage] = useState('');
+  const [name, setName] = useState('');
+  const [week, setWeek] = useState('');
+  const [time, setTime] = useState('');
+  const [pw, setPw] = useState('');
+  const [rePw, setRePw] = useState('');
+  const [errMessage, setErrMessage] = useState('');
+  const [reserveButtonVisible, setReserveButtonVisible] = useState(false);
 
   async function clickReserveButton () {
-
     if (name.trim() === '') {
       setErrMessage('이름을 입력하세요');
     }
@@ -180,6 +184,23 @@ export default function RegularReservePage () {
       >
         <div>예약하기</div>
       </a>
+      {reserveButtonVisible ?
+        <a
+          href="#!"
+          className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl"
+          onClick={clickReserveButton}
+        >
+          <div>예약하기</div>
+        </a>
+        :
+        <a
+          href="#!"
+          className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl"
+          onClick={() => { alert('훈련 예약 기간이 아닙니다'); }}
+        >
+          <div>예약하기</div>
+        </a>
+      }
 
       <div className="h-6" />
 

@@ -6,7 +6,7 @@ export default function HomePage () {
 
   return (
     <div className="flex flex-col items-center justify-center w-screen min-h-screen p-2">
-      <img src="img/croni.png" className="w-4/6" />
+      <img src="img/croni.png" alt="croni" className="w-4/6" />
       <div className="h-16" />
       <CustomButton to='/regular-reserve' title="정규훈련 예약" />
       <div className="h-8" />

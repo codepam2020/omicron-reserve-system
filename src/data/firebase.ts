@@ -163,6 +163,21 @@ async function resetFreeReserve() {
   );
 }
 
+async function getTrainingReserveButtonVisible() {
+  const data = (await getDoc(doc(db, "setting", "data"))).data();
+  return data as object;
+}
+
+async function setTrainigReserveButtonVisible(reserve_button_visible: boolean) {
+  await setDoc(
+    doc(db, "setting", "data"),
+    {
+      reserve_button_visible: reserve_button_visible,
+    },
+    { merge: true }
+  );
+}
+
 export {
   getTueData,
   getWedData,
@@ -175,4 +190,6 @@ export {
   resetFreeReserve,
   logDataFree,
   logDataRegular,
+  getTrainingReserveButtonVisible,
+  setTrainigReserveButtonVisible,
 };

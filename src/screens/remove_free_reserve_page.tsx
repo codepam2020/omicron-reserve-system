@@ -116,6 +116,7 @@ export default function RemoveFreeReserve () {
       </Link>
 
       <div className="h-6" />
+      <a onClick={setData} />
 
 
     </div>

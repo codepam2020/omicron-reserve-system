@@ -104,6 +104,7 @@ export default function RemoveRegularReservePage () {
       </Link>
 
       <div className="h-6" />
+      <a onClick={setData} />
 
     </div>
   );

@@ -24,15 +24,15 @@ export default function RegularReservePage () {
       setErrMessage('이름을 입력하세요');
     }
 
-    else if (week == '') {
+    else if (week === '') {
       setErrMessage('요일을 선택하세요');
     }
 
-    else if (time == '') {
+    else if (time === '') {
       setErrMessage('시간을 선택하세요');
     }
 
-    else if (pw == '') {
+    else if (pw === '') {
       setErrMessage('비밀번호를 입력하세요');
     }
 

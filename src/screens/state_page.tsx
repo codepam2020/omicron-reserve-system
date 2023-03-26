@@ -33,7 +33,7 @@ export default function StatePage () {
         </Select>
       </FormControl>
       <div className="h-5" />
-      {trainingType == '정규훈련' ?
+      {trainingType === '정규훈련' ?
         <RegularTrainingState /> :
         <FreeTrainingState />
       }

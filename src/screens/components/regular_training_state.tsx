@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getThuData, getTueData } from "../../data/firebase";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function RegularTrainingState () {
   const [tueData, setTueData] = useState({

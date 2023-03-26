@@ -145,7 +145,7 @@ export default function RegularReservePage () {
       <div className="h-6" />
 
       <a
-        href="#"
+        href="#!"
         className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl"
         onClick={clickReserveButton}
       >

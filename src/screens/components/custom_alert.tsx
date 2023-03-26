@@ -21,8 +21,8 @@ export default function CustomAlert ({ title, clickYes, clickNo }: { title: stri
           <div className="text-xl mt-4">{title}</div>
           <div className="h-5" />
           <div className="flex flex-row w-10/12 justify-around">
-            <Link to="#" onClick={clickYes}>예</Link>
-            <Link to="#" onClick={clickNo}>아니요</Link>
+            <Link to="#!" onClick={clickYes}>예</Link>
+            <Link to="#!" onClick={clickNo}>아니요</Link>
           </div>
         </div>
 

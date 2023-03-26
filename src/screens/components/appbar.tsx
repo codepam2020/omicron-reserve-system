@@ -11,7 +11,7 @@ export default function Appbar ({ title }: { title: string; }) {
         <HomeIcon sx={{ fontSize: 30, marginBottom: 1 }} />
       </Link>
 
-      <Link to="#" className="absolute left-3" onClick={() => {
+      <Link to="#!" className="absolute left-3" onClick={() => {
         navigate(-1);
       }}>
         <ArrowBackIcon sx={{ fontSize: 30, marginBottom: 1 }} />

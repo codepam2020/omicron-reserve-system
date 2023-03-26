@@ -44,7 +44,7 @@ export default function ManagaPage () {
 
           <div className="h-10" />
 
-          <Link to="#" onClick={clickButton} className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl">
+          <Link to="#!" onClick={clickButton} className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl">
             <div className="text-basic">확인</div>
           </Link>
 

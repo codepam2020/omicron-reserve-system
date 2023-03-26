@@ -30,9 +30,9 @@ export default function ManageContent () {
 
   return (
     <div className="flex flex-col items-center justify-start w-full min-h-screen">
-      <Link to="#" onClick={clickRegResetButton}>정규훈련 Reset</Link>
+      <Link to="#!" onClick={clickRegResetButton}>정규훈련 Reset</Link>
       <div className="h-8" />
-      <Link to="#" onClick={clickFreeResetButton}>자율훈련 Reset</Link>
+      <Link to="#!" onClick={clickFreeResetButton}>자율훈련 Reset</Link>
 
       {
         regAlertVisible ?

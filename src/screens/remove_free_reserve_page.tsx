@@ -110,7 +110,7 @@ export default function RemoveFreeReserve () {
 
       <Link
         onClick={() => { clickCancelButton(); }}
-        to="#"
+        to="#!"
         className="flex flex-col items-center justify-center w-32 h-9 bg-button rounded-xl">
         <div>예약취소</div>
       </Link>

@@ -104,7 +104,7 @@ export default function RemoveRegularReservePage () {
       </Link>
 
       <div className="h-6" />
-      <a onClick={() => { setData(state); }} className='text-xs'>.</a>
+      <a href="#!" onClick={() => { setData(state); }} className='text-xs'>.</a>
 
 
     </div >

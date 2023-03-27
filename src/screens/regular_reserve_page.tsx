@@ -18,14 +18,10 @@ export default function RegularReservePage () {
   const [rePw, setRePw] = useState('');
   const [errMessage, setErrMessage] = useState('');
   const [reserveButtonVisible, setReserveButtonVisible] = useState(false);
-  const [tueData, setTueData] = useState<any>();
-  const [thuData, setThuData] = useState<any>();
 
 
   useEffect(() => {
     getTrainingReserveButtonVisible().then((re: any) => setReserveButtonVisible(re.reserve_button_visible));
-    getTueData().then((res) => setTueData(res));
-    getThuData().then((res) => setThuData(res));
   }, []);
 
 
@@ -58,6 +54,7 @@ export default function RegularReservePage () {
     addRegularReserve({ name: name, week: week, time: time, pw: pw, timeStamp: getCurrentDate() });
     logDataRegular({ name: name, week: week, time: time, pw: pw, timeStamp: getCurrentDate() });
     alert('예약되었습니다');
+    console.log('예약 완료');
     navigate('/');
   }
 
@@ -84,10 +81,15 @@ export default function RegularReservePage () {
 
     else {
       setErrMessage('');
-      reserveSuccessEvent();
-    }
-  }
 
+      if (week === 'tue') {
+        getTueData().then((res: any) => res[time].names.length >= 10 ? alert('선택하신 시간은 인원이 초과되었습니다.') : reserveSuccessEvent());
+      } else {
+        getThuData().then((res: any) => res[time].names.length >= 10 ? alert('선택하신 시간은 인원이 초과되었습니다.') : reserveSuccessEvent());
+      }
+    }
+
+  }
 
   return (
     <div className="flex flex-col items-center justify-start w-screen min-h-screen p-2">
@@ -96,7 +98,7 @@ export default function RegularReservePage () {
       <div className="mb-9 mt-10">
 
         <TextField
-          id="outlined-basic"
+          id="outlined-basic1"
           label="예약자 이름"
           variant="outlined"
           size="small"
@@ -111,10 +113,10 @@ export default function RegularReservePage () {
       <div className="flex flex-col items-center justify-center">
         <div>{ }</div>
         <FormControl size="small" sx={{ width: 190 }}>
-          <InputLabel id="demo-simple-select-label">요일</InputLabel>
+          <InputLabel id="demo-simple-select-label1">요일</InputLabel>
           <Select
             labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            id="demo-simple-select1"
             value={week}
             label="요일"
             onChange={(e: SelectChangeEvent) => { setWeek(e.target.value); }}
@@ -127,10 +129,10 @@ export default function RegularReservePage () {
         <div className="h-10" />
 
         <FormControl size="small" sx={{ width: 190 }}>
-          <InputLabel id="demo-simple-select-label">시간</InputLabel>
+          <InputLabel id="demo-simple-select-label2">시간</InputLabel>
           <Select
             labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            id="demo-simple-select2"
             value={time}
             label="시간"
             onChange={(e: SelectChangeEvent) => { setTime(e.target.value); }}
@@ -147,7 +149,7 @@ export default function RegularReservePage () {
 
       <div>
         <TextField
-          id="outlined-basic"
+          id="outlined-basic2"
           label="비밀번호"
           variant="outlined"
           size="small"
@@ -162,7 +164,7 @@ export default function RegularReservePage () {
 
       <div>
         <TextField
-          id="outlined-basic"
+          id="outlined-basic3"
           label="비밀번호 확인"
           variant="outlined"
           size="small"

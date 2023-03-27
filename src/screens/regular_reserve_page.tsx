@@ -87,6 +87,7 @@ export default function RegularReservePage () {
       reserveSuccessEvent();
       console.log(tueData);
       console.log(thuData);
+      console.log('hihi');
     }
   }
 

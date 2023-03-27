@@ -24,8 +24,8 @@ export default function RegularReservePage () {
 
   useEffect(() => {
     getTrainingReserveButtonVisible().then((re: any) => setReserveButtonVisible(re.reserve_button_visible));
-    getTueData().then((res) => { console.log(res); });
-    getThuData().then((res) => { console.log(res); });
+    getTueData().then((res) => setTueData(res));
+    getThuData().then((res) => setThuData(res));
   }, []);
 
 
@@ -85,6 +85,8 @@ export default function RegularReservePage () {
     else {
       setErrMessage('');
       reserveSuccessEvent();
+      console.log(tueData);
+      console.log(thuData);
     }
   }
 

@@ -24,7 +24,7 @@ export default function RegularReservePage () {
 
   useEffect(() => {
     getTrainingReserveButtonVisible().then((re: any) => setReserveButtonVisible(re.reserve_button_visible));
-    getTueData();
+    getTueData().then((res) => { console.log(res); });
     getThuData().then((res) => { console.log(res); });
   }, []);
 

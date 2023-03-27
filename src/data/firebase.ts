@@ -21,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const collection = "test_reserve";
-const collection_setting = "test_setting";
+const collection_setting = "setting";
 
 async function getTueData() {
   const docRef = doc(db, collection, "tue");
@@ -155,24 +155,7 @@ async function resetFreeReserve() {
           ],
         },
         B: {
-          names: [
-            {
-              name: "임원진",
-              week: "wed",
-              time: "time2",
-              court: "B",
-              pw: "960221",
-              timeStamp: 11,
-            },
-            {
-              name: "임원진",
-              week: "wed",
-              time: "time2",
-              court: "B",
-              pw: "960221",
-              timeStamp: 22,
-            },
-          ],
+          names: [],
         },
       },
       time3: { A: { names: [] }, B: { names: [] } },

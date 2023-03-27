@@ -20,8 +20,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const collection = "recent-reserve";
-const collection_setting = "setting";
+const collection = "test_reserve";
+const collection_setting = "test_setting";
 
 async function getTueData() {
   const docRef = doc(db, collection, "tue");

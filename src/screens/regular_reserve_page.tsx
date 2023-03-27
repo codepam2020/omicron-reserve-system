@@ -84,10 +84,6 @@ export default function RegularReservePage () {
 
     else {
       setErrMessage('');
-      reserveSuccessEvent();
-      console.log(tueData);
-      console.log(thuData);
-      console.log('hihi');
     }
   }
 

@@ -6,9 +6,11 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from "react-router-dom";
 import Appbar from "./components/appbar";
-import { addRegularReserve, logDataRegular, getTrainingReserveButtonVisible } from "../data/firebase";
+import { addRegularReserve, logDataRegular, getTrainingReserveButtonVisible, getTueData, getThuData } from "../data/firebase";
 
 export default function RegularReservePage () {
+  var navigate = useNavigate();
+
   const [name, setName] = useState('');
   const [week, setWeek] = useState('');
   const [time, setTime] = useState('');
@@ -16,11 +18,15 @@ export default function RegularReservePage () {
   const [rePw, setRePw] = useState('');
   const [errMessage, setErrMessage] = useState('');
   const [reserveButtonVisible, setReserveButtonVisible] = useState(false);
+  const [tueData, setTueData] = useState<any>();
+  const [thuData, setThuData] = useState<any>();
 
 
   useEffect(() => {
     getTrainingReserveButtonVisible().then((re: any) => setReserveButtonVisible(re.reserve_button_visible));
+    getTueData().then;
   }, []);
+
 
   function getCurrentDate () {
     var date: any = new Date();
@@ -44,14 +50,15 @@ export default function RegularReservePage () {
     var milliseconds = date.getMilliseconds();
     milliseconds = milliseconds < 10 ? '00' + milliseconds.toString() : milliseconds < 100 ? '0' + milliseconds.toString() : milliseconds.toString();
 
-
     return Number(year + month + day + hour + minites + seconds + milliseconds);
   }
 
-
-  var navigate = useNavigate();
-
-
+  function reserveSuccessEvent () {
+    addRegularReserve({ name: name, week: week, time: time, pw: pw, timeStamp: getCurrentDate() });
+    logDataRegular({ name: name, week: week, time: time, pw: pw, timeStamp: getCurrentDate() });
+    alert('예약되었습니다');
+    navigate('/');
+  }
 
   async function clickReserveButton () {
     if (name.trim() === '') {
@@ -76,10 +83,7 @@ export default function RegularReservePage () {
 
     else {
       setErrMessage('');
-      addRegularReserve({ name: name, week: week, time: time, pw: pw, timeStamp: getCurrentDate() });
-      logDataRegular({ name: name, week: week, time: time, pw: pw, timeStamp: getCurrentDate() });
-      alert('예약되었습니다');
-      navigate('/');
+      reserveSuccessEvent();
     }
   }
 

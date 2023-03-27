@@ -19,12 +19,10 @@ export default function FreeReservePage () {
   const [rePw, setRePw] = useState('');
   const [errMessage, setErrMessage] = useState('');
   const [reserveButtonVisible, setReserveButtonVisible] = useState(false);
-  const [wedData, setWedData] = useState<any>();
 
 
   useEffect(() => {
     getTrainingReserveButtonVisible().then((res: any) => setReserveButtonVisible(res.reserve_button_visible));
-    getWedData().then((res: any) => setWedData(res));
   }, []);
 
   function getCurrentDate () {
@@ -88,16 +86,11 @@ export default function FreeReservePage () {
 
     else {
       setErrMessage('');
+
       if (week === 'wed') {
-        if (wedData[time][court]['names'].length > 0) {
-          if (wedData[time][court]['names'][0].name === '임원진') {
-            alert('임원진 훈련 시간입니다');
-          } else {
-            reserveSusccessEvent();
-          }
-        } else {
-          reserveSusccessEvent();
-        }
+        getWedData().then((res: any) => res[time][court].names.length > 0 ?
+          res[time][court].names[0].name === '임원진' ? alert('임원진 훈련시간입니다') : reserveSusccessEvent()
+          : reserveSusccessEvent());
       } else {
         reserveSusccessEvent();
       }

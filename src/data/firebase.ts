@@ -20,20 +20,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+const collection = "test_reserve";
+const collection_setting = "test_setting";
+
 async function getTueData() {
-  const docRef = doc(db, "recent-reserve", "tue");
+  const docRef = doc(db, collection, "tue");
   const docSnap = await getDoc(docRef);
   return docSnap.data() as object;
 }
 
 async function getWedData() {
-  const docRef = doc(db, "recent-reserve", "wed");
+  const docRef = doc(db, collection, "wed");
   const docSnap = await getDoc(docRef);
   return docSnap.data() as object;
 }
 
 async function getThuData() {
-  const docRef = doc(db, "recent-reserve", "thu");
+  const docRef = doc(db, collection, "thu");
   const docSnap = await getDoc(docRef);
   return docSnap.data() as object;
 }
@@ -42,7 +45,7 @@ async function addRegularReserve(names: any) {
   var data: any = {};
   data[names.time] = { names: arrayUnion(names) };
 
-  await setDoc(doc(db, "recent-reserve", names.week), data, { merge: true });
+  await setDoc(doc(db, collection, names.week), data, { merge: true });
 }
 
 async function addFreeReserve(names: any) {
@@ -53,7 +56,7 @@ async function addFreeReserve(names: any) {
     data[names.time] = { B: { names: arrayUnion(names) } };
   }
 
-  await setDoc(doc(db, "recent-reserve", names.week), data, { merge: true });
+  await setDoc(doc(db, collection, names.week), data, { merge: true });
 }
 
 async function logDataFree(names: any) {
@@ -76,7 +79,7 @@ async function removeRegularReserve(names: any) {
   var data: any = {};
   data[names.time] = { names: arrayRemove(names) };
 
-  await setDoc(doc(db, "recent-reserve", names.week), data, { merge: true });
+  await setDoc(doc(db, collection, names.week), data, { merge: true });
 }
 
 async function removeFreeReserve(names: any) {
@@ -87,12 +90,12 @@ async function removeFreeReserve(names: any) {
     data[names.time] = { B: { names: arrayRemove(names) } };
   }
 
-  await setDoc(doc(db, "recent-reserve", names.week), data, { merge: true });
+  await setDoc(doc(db, collection, names.week), data, { merge: true });
 }
 
 async function resetRegularReserve() {
   await setDoc(
-    doc(db, "recent-reserve", "tue"),
+    doc(db, collection, "tue"),
     {
       reg_time1: { names: [] },
       reg_time2: { names: [] },
@@ -101,7 +104,7 @@ async function resetRegularReserve() {
     { merge: true }
   );
   await setDoc(
-    doc(db, "recent-reserve", "thu"),
+    doc(db, collection, "thu"),
     {
       reg_time1: { names: [] },
       reg_time2: { names: [] },
@@ -113,21 +116,21 @@ async function resetRegularReserve() {
 
 async function resetFreeReserve() {
   await setDoc(
-    doc(db, "recent-reserve", "tue"),
+    doc(db, collection, "tue"),
     {
       time1: { A: { names: [] }, B: { names: [] } },
     },
     { merge: true }
   );
   await setDoc(
-    doc(db, "recent-reserve", "thu"),
+    doc(db, collection, "thu"),
     {
       time1: { A: { names: [] }, B: { names: [] } },
     },
     { merge: true }
   );
   await setDoc(
-    doc(db, "recent-reserve", "wed"),
+    doc(db, collection, "wed"),
     {
       time1: { A: { names: [] }, B: { names: [] } },
       time2: {
@@ -180,13 +183,13 @@ async function resetFreeReserve() {
 }
 
 async function getTrainingReserveButtonVisible() {
-  const data = (await getDoc(doc(db, "setting", "data"))).data();
+  const data = (await getDoc(doc(db, collection_setting, "data"))).data();
   return data as object;
 }
 
 async function setTrainigReserveButtonVisible(reserve_button_visible: boolean) {
   await setDoc(
-    doc(db, "setting", "data"),
+    doc(db, collection_setting, "data"),
     {
       reserve_button_visible: reserve_button_visible,
     },

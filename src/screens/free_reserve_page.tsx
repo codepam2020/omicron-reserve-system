@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from "react-router-dom";
 import Appbar from "./components/appbar";
-import { addFreeReserve, logDataFree, getTrainingReserveButtonVisible } from "../data/firebase";
+import { addFreeReserve, logDataFree, getTrainingReserveButtonVisible, getWedData } from "../data/firebase";
 
 export default function FreeReservePage () {
   const navigate = useNavigate();
@@ -19,10 +19,12 @@ export default function FreeReservePage () {
   const [rePw, setRePw] = useState('');
   const [errMessage, setErrMessage] = useState('');
   const [reserveButtonVisible, setReserveButtonVisible] = useState(false);
+  const [wedData, setWedData] = useState<any>();
 
 
   useEffect(() => {
-    getTrainingReserveButtonVisible().then((re: any) => setReserveButtonVisible(re.reserve_button_visible));
+    getTrainingReserveButtonVisible().then((res: any) => setReserveButtonVisible(res.reserve_button_visible));
+    getWedData().then((res: any) => setWedData(res));
   }, []);
 
   function getCurrentDate () {
@@ -49,6 +51,13 @@ export default function FreeReservePage () {
 
 
     return Number(year + month + day + hour + minites + seconds + milliseconds);
+  }
+
+  function reserveSusccessEvent () {
+    addFreeReserve({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: getCurrentDate() });
+    logDataFree({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: getCurrentDate() });
+    alert('예약되었습니다');
+    navigate('/');
   }
 
 
@@ -79,13 +88,25 @@ export default function FreeReservePage () {
 
     else {
       setErrMessage('');
-      addFreeReserve({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: getCurrentDate() });
-      logDataFree({ name: name, week: week, time: time, court: court, pw: pw, timeStamp: getCurrentDate() });
-      alert('예약되었습니다');
-      navigate('/');
+      if (week === 'wed') {
+        if (wedData[time][court]['names'].length > 0) {
+          if (wedData[time][court]['names'][0].name === '임원진') {
+            alert('임원진 훈련 시간입니다');
+          } else {
+            reserveSusccessEvent();
+          }
+        } else {
+          reserveSusccessEvent();
+        }
+      } else {
+        reserveSusccessEvent();
+      }
+
+
+
+
     }
   }
-
 
   return (
     <div className="flex flex-col items-center justify-start w-screen min-h-screen p-2">
@@ -95,7 +116,7 @@ export default function FreeReservePage () {
       <div className="mb-9 mt-10">
 
         <TextField
-          id="outlined-basic"
+          id="outlined-basic1"
           label="예약자 이름"
           variant="outlined"
           size="small"
@@ -112,7 +133,7 @@ export default function FreeReservePage () {
           <InputLabel id="demo-simple-select-label">요일</InputLabel>
           <Select
             labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            id="demo-simple-select1"
             value={week}
             label="요일"
             onChange={(e: SelectChangeEvent) => { setWeek(e.target.value); }}
@@ -131,7 +152,7 @@ export default function FreeReservePage () {
           {week === "wed" ?
             <Select
               labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              id="demo-simple-select2"
               value={time}
               label="시간"
               onChange={(e: SelectChangeEvent) => { setTime(e.target.value); }}
@@ -145,7 +166,7 @@ export default function FreeReservePage () {
             :
             <Select
               labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              id="demo-simple-select3"
               value={time}
               label="시간"
               onChange={(e: SelectChangeEvent) => { setTime(e.target.value); }}
@@ -160,7 +181,7 @@ export default function FreeReservePage () {
             <InputLabel id="demo-simple-select-label">코트</InputLabel>
             <Select
               labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              id="demo-simple-select4"
               value={court}
               label="코트"
               onChange={(e: SelectChangeEvent) => { setCourt(e.target.value); }}
@@ -176,7 +197,7 @@ export default function FreeReservePage () {
 
       <div>
         <TextField
-          id="outlined-basic"
+          id="outlined-basic2"
           label="비밀번호"
           variant="outlined"
           size="small"
@@ -191,7 +212,7 @@ export default function FreeReservePage () {
 
       <div>
         <TextField
-          id="outlined-basic"
+          id="outlined-basic3"
           label="비밀번호 확인"
           variant="outlined"
           size="small"

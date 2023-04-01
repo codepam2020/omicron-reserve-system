@@ -27,7 +27,7 @@ export default function ManagaPage () {
 
       <div className="h-8" />
 
-      {true ?
+      {visible ?
         <ManageContent />
         :
         <div className="flex flex-col items-center w-full">

@@ -42,7 +42,7 @@ export default function ManageContent () {
   }
 
   function saveOpenTime () {
-    const nowTime = new Date;
+    const nowTime = new Date();
     const setedTime = new Date(openTime);
     nowTime > setedTime ? console.log('open') : console.log('closed');
   }

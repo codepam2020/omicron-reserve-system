@@ -8,9 +8,10 @@ const Container = styled.div`
   border-radius: 15px;
   width: 70%;
   height: 120px;
-  background-color: white;
+  background-color: #ffffff;
   box-shadow: 2px 8px 10px lightgray;
   transform: translate(-50%,-50%);
+  z-index: 1;
 `;
 
 export default function CustomAlert ({ title, clickYes, clickNo }: { title: string, clickYes: any, clickNo: any; }) {

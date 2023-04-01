@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getTrainingReserveButtonVisible } from "../data/firebase";
 import { CustomButton } from "./components";
 
 
+
 export default function HomePage () {
+  const navigate = useNavigate();
 
   const [reserveButtonVisible, setReserveButtonVisible] = useState(false);
 
   useEffect(() => {
     getTrainingReserveButtonVisible().then((re: any) => setReserveButtonVisible(re.reserve_button_visible));
+
   }, []);
 
   function clickNotTime () {
     alert('훈련 예약 기간이 아닙니다');
+    navigate('/regular-reserve');
+
   }
+
 
 
   return (

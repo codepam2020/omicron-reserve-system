@@ -7,6 +7,7 @@ module.exports = {
         basic: "#000000",
         button: "#d4db18",
         name: "#919191",
+        // transparent: rgba("1,1,1,0.5"),
       },
       fontSize: {
         title: 24,

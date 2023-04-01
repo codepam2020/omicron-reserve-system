@@ -20,23 +20,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const collection = "test_reserve";
-const collection_setting = "test_setting";
+const collection_reserve = "reserve"; // reserve // test_reserve
+const collection_setting = "setting"; // setting // test_setting
+const collection_log = "log_data"; // log_data // test_log
 
 async function getTueData() {
-  const docRef = doc(db, collection, "tue");
+  const docRef = doc(db, collection_reserve, "tue");
   const docSnap = await getDoc(docRef);
   return docSnap.data() as object;
 }
 
 async function getWedData() {
-  const docRef = doc(db, collection, "wed");
+  const docRef = doc(db, collection_reserve, "wed");
   const docSnap = await getDoc(docRef);
   return docSnap.data() as object;
 }
 
 async function getThuData() {
-  const docRef = doc(db, collection, "thu");
+  const docRef = doc(db, collection_reserve, "thu");
   const docSnap = await getDoc(docRef);
   return docSnap.data() as object;
 }
@@ -45,7 +46,7 @@ async function addRegularReserve(names: any) {
   var data: any = {};
   data[names.time] = { names: arrayUnion(names) };
 
-  await setDoc(doc(db, collection, names.week), data, { merge: true });
+  await setDoc(doc(db, collection_reserve, names.week), data, { merge: true });
 }
 
 async function addFreeReserve(names: any) {
@@ -56,12 +57,12 @@ async function addFreeReserve(names: any) {
     data[names.time] = { B: { names: arrayUnion(names) } };
   }
 
-  await setDoc(doc(db, collection, names.week), data, { merge: true });
+  await setDoc(doc(db, collection_reserve, names.week), data, { merge: true });
 }
 
 async function logDataFree(names: any) {
   await setDoc(
-    doc(db, "log_data", "free_log_data"),
+    doc(db, collection_log, "free_log_data"),
     { data: arrayUnion(names) },
     { merge: true }
   );
@@ -69,7 +70,7 @@ async function logDataFree(names: any) {
 
 async function logDataRegular(names: any) {
   await setDoc(
-    doc(db, "log_data", "regular_log_data"),
+    doc(db, collection_log, "regular_log_data"),
     { data: arrayUnion(names) },
     { merge: true }
   );
@@ -79,7 +80,7 @@ async function removeRegularReserve(names: any) {
   var data: any = {};
   data[names.time] = { names: arrayRemove(names) };
 
-  await setDoc(doc(db, collection, names.week), data, { merge: true });
+  await setDoc(doc(db, collection_reserve, names.week), data, { merge: true });
 }
 
 async function removeFreeReserve(names: any) {
@@ -90,12 +91,12 @@ async function removeFreeReserve(names: any) {
     data[names.time] = { B: { names: arrayRemove(names) } };
   }
 
-  await setDoc(doc(db, collection, names.week), data, { merge: true });
+  await setDoc(doc(db, collection_reserve, names.week), data, { merge: true });
 }
 
 async function resetRegularReserve() {
   await setDoc(
-    doc(db, collection, "tue"),
+    doc(db, collection_reserve, "tue"),
     {
       reg_time1: { names: [] },
       reg_time2: { names: [] },
@@ -104,7 +105,7 @@ async function resetRegularReserve() {
     { merge: true }
   );
   await setDoc(
-    doc(db, collection, "thu"),
+    doc(db, collection_reserve, "thu"),
     {
       reg_time1: { names: [] },
       reg_time2: { names: [] },
@@ -116,21 +117,21 @@ async function resetRegularReserve() {
 
 async function resetFreeReserve() {
   await setDoc(
-    doc(db, collection, "tue"),
+    doc(db, collection_reserve, "tue"),
     {
       time1: { A: { names: [] }, B: { names: [] } },
     },
     { merge: true }
   );
   await setDoc(
-    doc(db, collection, "thu"),
+    doc(db, collection_reserve, "thu"),
     {
       time1: { A: { names: [] }, B: { names: [] } },
     },
     { merge: true }
   );
   await setDoc(
-    doc(db, collection, "wed"),
+    doc(db, collection_reserve, "wed"),
     {
       time1: { A: { names: [] }, B: { names: [] } },
       time2: {

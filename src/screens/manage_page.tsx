@@ -4,6 +4,8 @@ import TextField from '@mui/material/TextField';
 import { Link } from "react-router-dom";
 import { ManageContent } from "./components";
 
+
+
 export default function ManagaPage () {
 
   const [pw, setPw] = useState('');
@@ -24,7 +26,8 @@ export default function ManagaPage () {
       <Appbar title="관리자 페이지" />
 
       <div className="h-8" />
-      {visible ?
+
+      {true ?
         <ManageContent />
         :
         <div className="flex flex-col items-center w-full">

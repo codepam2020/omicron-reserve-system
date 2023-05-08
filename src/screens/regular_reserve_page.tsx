@@ -83,9 +83,9 @@ export default function RegularReservePage () {
       setErrMessage('');
 
       if (week === 'tue') {
-        getTueData().then((res: any) => res[time].names.length >= 10 ? alert('선택하신 시간은 인원이 초과되었습니다.') : reserveSuccessEvent());
+        getTueData().then((res: any) => res[time].names.length > 16 ? alert('선택하신 시간은 인원이 초과되었습니다.') : reserveSuccessEvent());
       } else {
-        getThuData().then((res: any) => res[time].names.length >= 10 ? alert('선택하신 시간은 인원이 초과되었습니다.') : reserveSuccessEvent());
+        getThuData().then((res: any) => res[time].names.length > 16 ? alert('선택하신 시간은 인원이 초과되었습니다.') : reserveSuccessEvent());
       }
     }
 

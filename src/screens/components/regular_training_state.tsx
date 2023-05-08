@@ -52,19 +52,10 @@ export default function RegularTrainingState () {
 
         <div className="h-3" />
 
-        <div className="mb-2" >18:00 ~ 19:00</div>
+        <div className="mb-2" >18:30 ~ 19:30</div>
 
         <div className="grid grid-cols-4 gap-5">
           {tueData.reg_time2.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
-            <Link to='/remove-reg-reserve' state={data} className="text-name" key={data.timeStamp} >{data.name}</Link>
-          )}
-        </div>
-
-        <div className="h-3" />
-
-        <div className="mb-2" >18:30 ~ 19:30</div>
-        <div className="grid grid-cols-4 gap-5">
-          {tueData.reg_time3.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
             <Link to='/remove-reg-reserve' state={data} className="text-name" key={data.timeStamp} >{data.name}</Link>
           )}
         </div>
@@ -86,18 +77,9 @@ export default function RegularTrainingState () {
 
         <div className="h-3" />
 
-        <div className="mb-2" >18:00 ~ 19:00</div>
-        <div className="grid grid-cols-4 gap-5">
-          {thuData.reg_time2.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
-            <Link to='/remove-reg-reserve' state={data} className="text-name" key={data.timeStamp} >{data.name}</Link>
-          )}
-        </div>
-
-        <div className="h-3" />
-
         <div className="mb-2" >18:30 ~ 19:30</div>
         <div className="grid grid-cols-4 gap-5">
-          {thuData.reg_time3.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
+          {thuData.reg_time2.names.sort(function (a, b) { return a.timeStamp - b.timeStamp; }).map((data) =>
             <Link to='/remove-reg-reserve' state={data} className="text-name" key={data.timeStamp} >{data.name}</Link>
           )}
         </div>

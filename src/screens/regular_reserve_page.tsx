@@ -138,8 +138,7 @@ export default function RegularReservePage () {
             onChange={(e: SelectChangeEvent) => { setTime(e.target.value); }}
           >
             <MenuItem value="reg_time1">17:30 ~ 18:30</MenuItem>
-            <MenuItem value="reg_time2">18:00 ~ 19:00</MenuItem>
-            <MenuItem value="reg_time3">18:30 ~ 19:30</MenuItem>
+            <MenuItem value="reg_time2">18:30 ~ 19:30</MenuItem>
           </Select>
 
         </FormControl>

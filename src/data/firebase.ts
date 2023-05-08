@@ -156,7 +156,24 @@ async function resetFreeReserve() {
           ],
         },
         B: {
-          names: [],
+          names: [
+            {
+              name: "임원진",
+              week: "wed",
+              time: "time2",
+              court: "B",
+              pw: "960221",
+              timeStamp: 11,
+            },
+            {
+              name: "임원진",
+              week: "wed",
+              time: "time2",
+              court: "B",
+              pw: "960221",
+              timeStamp: 22,
+            },
+          ],
         },
       },
       time3: { A: { names: [] }, B: { names: [] } },
